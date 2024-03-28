@@ -106,14 +106,6 @@ $(WIFI_FIRMWARE_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 ALL_DEFAULT_INSTALLED_MODULES += $(RFS_MSM_ADSP_SYMLINKS) $(RFS_MSM_CDSP_SYMLINKS) $(RFS_MSM_MPSS_SYMLINKS) \
                                  $(RFS_MSM_WPSS_SYMLINKS) $(RFS_MSM_SLPI_SYMLINKS) $(WIFI_FIRMWARE_SYMLINKS)
 
-CNE_APP_SYMLINKS := $(TARGET_OUT_VENDOR)/app/CneApp/lib/arm64
-$(CNE_APP_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
-	@echo "Creating CneApp symlinks: $@"
-	@mkdir -p $@
-	$(hide) ln -sf /vendor/lib64/libvndfwk_detect_jni.qti.so $@/libvndfwk_detect_jni.qti.so
-
-ALL_DEFAULT_INSTALLED_MODULES += $(CNE_APP_SYMLINKS)
-
 AW882XX_CAL_SYMLINKS := $(TARGET_OUT_VENDOR)/firmware/aw_cali.bin
 $(AW882XX_CAL_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	@echo "Creating aw882xx firmware symlinks: $@"
