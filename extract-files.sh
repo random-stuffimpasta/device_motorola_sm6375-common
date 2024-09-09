@@ -17,6 +17,10 @@ ANDROID_ROOT="${MY_DIR}/../../.."
 
 export TARGET_ENABLE_CHECKELF=true
 
+# If XML files don't have comments before the XML header, use this flag
+# Can still be used with broken XML files by using blob_fixup
+export TARGET_DISABLE_XML_FIXING=true
+
 HELPER="${ANDROID_ROOT}/tools/extract-utils/extract_utils.sh"
 if [ ! -f "${HELPER}" ]; then
     echo "Unable to find helper script at ${HELPER}"
@@ -65,16 +69,20 @@ fi
 function blob_fixup() {
     case "${1}" in
         system_ext/etc/permissions/moto-telephony.xml)
+            [ "$2" = "" ] && return 0
             sed -i "s#/system/#/system_ext/#" "${2}"
             ;;
         system_ext/priv-app/ims/ims.apk)
+            [ "$2" = "" ] && return 0
             apktool_patch "${2}" "$MY_DIR/ims-patches"
             ;;
         vendor/etc/vintf/manifest/vendor.dolby.media.c2@1.0-service.xml)
+            [ "$2" = "" ] && return 0
             sed -ni '/default.*fqname/!p' "${2}"
             ;;
         vendor/etc/qcril_database/qcrilNr.db|\
         vendor/etc/qcril_database/upgrade/config/*)
+            [ "$2" = "" ] && return 0
             sed -i '/persist.vendor.radio.poweron_opt/ s/1/0/g' "${2}"
             ;;
         vendor/lib64/libwvhidl.so)
@@ -85,7 +93,16 @@ function blob_fixup() {
             [ "$2" = "" ] && return 0
             grep -q "gettid: 1" "${2}" || echo "gettid: 1" >> "${2}"
             ;;
+        *)
+            return 1
+            ;;
     esac
+
+    return 0
+}
+
+function blob_fixup_dry() {
+    blob_fixup "$1" ""
 }
 
 if [ -z "${ONLY_TARGET}" ]; then
