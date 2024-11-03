@@ -3,7 +3,6 @@
 # Current blobs with ELF checks disabled:
 # libcne, libwqe, lowi-server, mutualex depend on libwpa_client, which is a gnu makefile target
 # libmdmcutback depends on libqsap_sdk, which is a gnu makefile target
-# libmotext_inf, libril-qcril-hook-oem depend on libril, which is a gnu makefile target
 
 # ADSP
 vendor/bin/adsprpcd
