@@ -20,3 +20,8 @@ rw_dir_file(hal_power_default, vendor_sysfs_scsi_host)
 rw_dir_file(hal_power_default, vendor_sysfs_sde_crtc)
 
 set_prop(hal_power_default, vendor_powerhal_prop)
+userdebug_or_eng(`
+
+# Allow reading /data/vendor/* for debugging
+  allow hal_power_default vendor_data_file:file r_file_perms;
+')
