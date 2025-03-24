@@ -463,16 +463,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_VENDOR_MOVE_ENABLED := true
 
-# WiFi Display
-PRODUCT_PACKAGES += \
-    libavservices_minijail \
-    libnl \
-    libpng.vendor \
-    libwfdaac_vendor
-
-PRODUCT_BOOT_JARS += \
-    WfdCommon
-
 # Protobuf
 PRODUCT_PACKAGES += \
     libprotobuf-cpp-full-3.9.1-vendorcompat \
