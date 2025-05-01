@@ -331,6 +331,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     system/core/libprocessgroup/profiles/task_profiles.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
 
+# Properties
+PRODUCT_VENDOR_PROPERTY_BLACKLIST := \
+    ro.carrier
+
 # RILD
 PRODUCT_PACKAGES += \
     android.hardware.secure_element@1.0.vendor \
