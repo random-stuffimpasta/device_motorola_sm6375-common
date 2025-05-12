@@ -83,6 +83,10 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     audio.usb.default \
     liba2dpoffload \
+    libbatterylistener \
+    libcirrusspkrprot \
+    libcomprcapture \
+    libexthwplugin \
     libaudiopreprocessing \
     libbundlewrapper \
     libdownmix \
@@ -97,6 +101,7 @@ PRODUCT_PACKAGES += \
     libhfp \
     libsndmonitor \
     libspkrprot \
+    libvolumelistener \
     sound_trigger.primary.holi
 
 PRODUCT_COPY_FILES += \
